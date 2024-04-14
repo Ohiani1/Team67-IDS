@@ -253,10 +253,10 @@ def tree_based_ids():
     rf_score=rf.score(X_test,y_test_encoded)
     y_predict=rf.predict(X_test)
     y_true=y_test_encoded
-    # precision,recall,fscore,none= precision_recall_fscore_support(y_true, y_predict, average='weighted')
+    precision,recall,fscore,none= precision_recall_fscore_support(y_true, y_predict, average='weighted')
     
     metrics.update([('(FS) Random Forest', {
-        "Accuracy" : str(round(dt_score*100, 2)),
+        "Accuracy" : str(round(rf_score*100, 2)),
         "Precision" : str(round(precision*100, 2)),
         "Recall" : str(round(recall*100, 2)),
         "F1-score" : str(round(fscore*100, 2))
