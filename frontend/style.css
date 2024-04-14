@@ -1,12 +1,53 @@
-.toolContainer {
-    width: 1100px;
-    height: 670px;
-    background: rgb(71, 71, 71);
-    padding: 20px;
-    border: 10px solid rgb(0, 0, 0);
-    border-radius: 40px;
-}
 
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Outfit:wght@300;600&family=Playfair+Display:wght@500;600&family=Playfair:opsz@5..1200&family=Poppins:ital,wght@0,400;1,600&display=swap')
+;
+body{
+    background: linear-gradient(to bottom, #ffffff, #ffffff);
+}
+.toolContainer {
+     animation: slideIn 1.5s;
+
+width: 1100px;
+  height: 670px;
+  background: rgb(51, 49, 49);
+  padding: 30px;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 30px;
+  transition:400ms;
+}
+.toolContainer:hover{
+    transition:400ms;
+}
+.title{
+    font-size:80px;
+    text-align: center;
+    font-family: 'Jost', serif;
+    font-weight: 400;
+    color:black;
+}
+.description{
+    font-size:20px;;
+    font-family: 'Jost', serif;
+    text-align: center;
+}
+.title_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:400px;
+}
+.description_container{
+    width:670px;
+
+}
+#system{
+    margin-top: 20px;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 /* #title {
     font-family: "Courier New", "Times New Roman", monospace;
     font-size: 40px;
@@ -15,260 +56,292 @@
 } */
 
 .headerContainer {
-    /* border-radius: 10px;
+  /* border-radius: 10px;
     border: 3px solid white; */
-    padding: 10px;
-} 
+  padding: 10px;
+}
 
 .dropdown {
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold; 
-    text-align: center;
-    width: auto;
-    height: auto;
-    display: inline-block;
-    margin-right: 60px;
-    background: white;
-    border: 10px solid white;
-    border-radius: 20px;
+  font-family: "Jost", sans-serif;
+
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: 40px;
+  background: rgb(255, 255, 255);
+  padding:10px;
+  border:2px solid rgb(0, 0, 0);
+  border-radius: 20px;
+  transition:300ms;
+  
+}
+.dropdown:hover {
+    border:2px solid rgb(98, 221, 127);
+    transition:300ms;
+    background-color: rgb(30, 30, 30);
+    color:white;
+
 }
 
 .importButton {
-    cursor: pointer;
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold;
-    text-align: center;
-    width: auto;
-    height: auto;
-    display: inline-block;
-    margin-right: 60px;
-    background: white;
-    border: 10px solid white;
-    border-radius: 20px;
+  cursor: pointer;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: 60px;
+  background: white;
+  border: 10px solid white;
+  border-radius: 20px;
 }
 
 .form-importPopup {
-    display: none;
-    position: fixed;
-    /* bottom: 0; */
-    top: 20%;
-    left: 20%;
-    /* right: 15px; */
-    z-index: 9;
+  display: none;
+  position: fixed;
+  /* bottom: 0; */
+  top: 20%;
+  left: 20%;
+  /* right: 15px; */
+  z-index: 9;
 }
 
 .importPopup-container {
-    font-family: "Arial", "Times New Roman", monospace; 
-    max-width: 400px;
-    padding: 10px;
-    background-color: rgb(134, 134, 134);
-    border: 5px solid rgb(0, 0, 0);
-    border-radius: 20px;
-  }
-
-.importPopup-container input[type=text] {
-    width: 90%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
+  font-family: "Arial", "Times New Roman", monospace;
+  max-width: 400px;
+  padding: 10px;
+  background-color: rgb(134, 134, 134);
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 20px;
 }
 
-.importPopup-container input[type=text]:focus {
-    background-color: #ddd;
-    outline: none;
+.importPopup-container input[type="text"] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.importPopup-container input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
 }
 
 .importPopup-container .buttonSubmit {
-    background-color: green;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
+  background-color: green;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
 }
 
 .importPopup-container .buttonCancel {
-    background-color: red;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8; /*not working?*/
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8; /*not working?*/
 }
-  
-.importPopup-container .buttonSubmit:hover, .importButton:hover, .buttonCancel:hover {
-    opacity: 1;
+
+.importPopup-container .buttonSubmit:hover,
+.importButton:hover,
+.buttonCancel:hover {
+  opacity: 1;
 }
 
 .runButton {
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold; 
-    text-align: center;
-    width: auto;
-    height: auto;
-    display: inline-block;
-    margin-right: 60px;
-    background: green;
-    border: 10px solid green;
-    border-radius: 20px;
-    opacity: 0.8;
-    cursor: pointer;
+    font-family: "Jost", sans-serif;
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: 60px;
+  background: rgb(78, 212, 78);
+  border: 2px solid rgb(8, 235, 8);
+  border-radius: 20px;
+  padding:10px;
+  color:white;
+  cursor: pointer;
+  font-size:12px;
+  transition:300ms;
+}
+.runButton:hover{
+    background-color: rgb(30, 30, 30);
+    color:white;
+    transition:300ms;
+    
 }
 
 label {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 select {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .bodyContainer {
-    /* border-radius: 10px;
+  /* border-radius: 10px;
     border: 3px solid white; */
-    padding: 10px;
-    position: relative;
-} 
+  padding: 10px;
+  position: relative;
+  justify-content: center;
+
+}
 
 .scrollableTextbox {
-    font-family: "Arial", "Times New Roman", monospace;
-    height: 500px;
-    width: 1000px;
-    display: inline-block;
-    margin-right: 20px;
-    background: white;
-    border: 10px solid white;
-    border-radius: 20px;
-    text-align: center;
-    overflow: scroll;
+  font-family: "Arial", "Times New Roman", monospace;
+  height: 500px;
+  width: 1000px;
+  display: inline-block;
+  margin-right: 20px;
+  background: white;
+  border: 10px solid white;
+  border-radius: 20px;
+  text-align: center;
+  overflow: scroll;
 }
 
 .moreInformation {
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold; 
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    height: auto;
-    width: auto;
-    display: inline-block;
-    background: rgb(109, 109, 247);
-    border: 10px solid rgb(109, 109, 247);
-    border-radius: 50%;
-    text-align: center;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  height: auto;
+  width: auto;
+  display: inline-block;
+  background: rgb(109, 109, 247);
+  border: 10px solid rgb(109, 109, 247);
+  border-radius: 50%;
+  text-align: center;
 }
 
 .form-moreInformation {
-    display: none;
-    position: fixed;
-    /* bottom: 0; */
-    top: 10%;
-    right: 15%;
-    /* right: 15px; */
-    z-index: 9;
+  display: none;
+  position: fixed;
+  /* bottom: 0; */
+  top: 10%;
+  right: 15%;
+  /* right: 15px; */
+  z-index: 9;
 }
 
 .infoPopup-container {
-    font-family: "Arial", "Times New Roman", monospace; 
-    max-width: 400px;
-    padding: 10px;
-    background-color: rgb(134, 134, 134);
-    border: 5px solid rgb(0, 0, 0);
-    border-radius: 20px;
-  }
+  font-family: "Arial", "Times New Roman", monospace;
+  max-width: 400px;
+  padding: 10px;
+  background-color: rgb(134, 134, 134);
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 20px;
+}
 
 .infoPopup-container .buttonCancel {
-    background-color: red;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
 }
-  
+
 .infoPopup-container .buttonCancel:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .footerContainer {
-    /* border-radius: 10px;
+  /* border-radius: 10px;
     border: 3px solid white; */
-    padding: 10px;
-} 
+  padding: 10px;
+}
 
 .save {
-    font-family: "Arial", "Times New Roman", monospace;
-    font-weight: bold; 
-    cursor: pointer;
-    height: auto;
-    width: auto;
-    display: inline-block;
-    background: rgb(245, 247, 109);
-    border: 10px solid rgb(245, 247, 109);
-    border-radius: 20px;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 850px;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  display: inline-block;
+  background: rgb(245, 247, 109);
+  border: 10px solid rgb(245, 247, 109);
+  border-radius: 20px;
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 850px;
 }
 
 .compare {
-    cursor: pointer;
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold;
-    text-align: center;
-    width: auto;
-    height: auto;
-    display: inline-block;
-    margin-right: 60px;
-    background: white;
-    border: 10px solid white;
-    border-radius: 20px;
+  cursor: pointer;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: 60px;
+  background: white;
+  border: 10px solid white;
+  border-radius: 20px;
 }
 
 .bCHeader1 {
-    font-family: "Arial", "Times New Roman", monospace; 
-    font-weight: bold;
-    text-align: left;
-    width: auto;
-    height: auto;
-    display: inline-block;
-    margin-right: 250px;
-    color: black;
-    margin-left: 10px;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  text-align: left;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-right: 250px;
+  color: black;
+  margin-left: 10px;
 }
 
 .scrollableTextbox2 {
-    font-family: "Arial", "Times New Roman", monospace;
-    height: 470px;
-    width: 470px;
-    display: inline-block;
-    margin-right: 20px;
-    background: white;
-    border: 10px solid white;
-    border-radius: 20px;
-    text-align: center;
-    overflow: scroll;
+  font-family: "Arial", "Times New Roman", monospace;
+  height: 470px;
+  width: 470px;
+  display: inline-block;
+  margin-right: 20px;
+  background: white;
+  border: 10px solid white;
+  border-radius: 20px;
+  text-align: center;
+  overflow: scroll;
 }
 
 .save2 {
-    font-family: "Arial", "Times New Roman", monospace;
-    font-weight: bold; 
-    cursor: pointer;
-    height: auto;
-    width: auto;
-    display: inline-block;
-    background: rgb(245, 247, 109);
-    border: 10px solid rgb(245, 247, 109);
-    border-radius: 20px;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 840px;
+  font-family: "Arial", "Times New Roman", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  display: inline-block;
+  background: rgb(245, 247, 109);
+  border: 10px solid rgb(245, 247, 109);
+  border-radius: 20px;
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 840px;
 }
-
+@keyframes slideIn {
+    from {
+      transform: translateY(700px);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

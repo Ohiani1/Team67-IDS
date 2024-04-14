@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./style.css">
-    </head>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
+  <body>
+    <section id="landing">
+      <div class="title_container">
+        <h1 class="title">IDS System Tool</h1>
+        <div class="description_container">
+          <p class="description">
+            The IDS System tool is designed for researchers to view, compare, and save data from an Intrusion Detection System
+            effectively. Please select a Machine learning model and a data set to run your test. Once you run your test you can also save
+            your results. View your previous saved results in the Compare section of the web page.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <body>
-        <div class="toolContainer">
-            <!-- <p id="title">
+    <section id="system">
+      <div class="toolContainer">
+        <!-- <p id="title">
                 Machine Learning Algorithm Development Tool for IDS
             </p> -->
 
+        <div class="headerContainer">
+          <div class="dropdown">
+            <form action="index.html" method="GET">
+              <label for="model">Choose Model:</label><br />
+              <select id="model" name="model">
+                <option value="LCCDE">LCCDE</option>
+                <option value="MHT">MHT</option>
+                <option value="Decision Tree">Decision Tree</option>
+              </select>
+            </form>
+          </div>
 
-            <div class="headerContainer">
-                <div class="dropdown">
-                    <form action="index.html" method="GET">
-                        <label for="model">Choose Model:</label><br>
-                        <select id="model" name="model">
-                            <option value="LCCDE">LCCDE</option>
-                            <option value="MHT">MHT</option>
-                            <option value="Decision Tree">Decision Tree</option>
-                        </select>
-                    </form>
-                </div>
+          <div class="dropdown">
+            <form action="index.html" method="GET">
+              <label for="dataset">Choose Dataset:</label><br />
+              <select id="dataset" name="dataset">
+                <option value="CICIDS2017">CICIDS2017</option>
+              </select>
+            </form>
+          </div>
 
-
-                <div class="dropdown">
-                    <form action="index.html" method="GET">
-                        <label for="dataset">Choose Dataset:</label><br>
-                        <select id="dataset" name="dataset">
-                            <option value="CICIDS2017">CICIDS2017</option>
-                        </select>
-                    </form>
-                </div>
-
-
-                <!-- <button class="importButton" onclick="importPopup()">Import Dataset</button>
+          <!-- <button class="importButton" onclick="importPopup()">Import Dataset</button>
                 <div class="form-importPopup" id="myImportPopup">
                     <form action="./action_page.php" class="importPopup-container">
                       <h1>Import Dataset</h1>
@@ -48,57 +58,47 @@
                     </form>
                 </div> -->
 
-
-                <button class="runButton" onclick="runTest()">Run Test</button>
-            </div>
-
-
-            <div class="bodyContainer">
-                <div class="scrollableTextbox">
-                   
-                </div>
-
-
-               
-                <button class="moreInformation" onclick="infoPopup()">i</button>
-                <div class="form-moreInformation" id="myMoreInformation">
-                    <form class="infoPopup-container">
-                        <h1>More Information</h1>
-                        <h2>Precision:</h2>
-                        <p>How often a model correctly predicts the positive class</p>
-                        <h2>Recall:</h2>
-                        <p>How often a model correctly identifies true positives from all actual positives</p>
-                        <h2>Accuracy:</h2>
-                        <p>How often a model correctly predicts the outcome</p>
-                        <h2>F1-Score:</h2>
-                        <p>Measure of the harmonic mean of precision recall</p>
-                        <button type="button" class="buttonCancel" onclick="closeInfoPopup()">Close</button>
-                    </form>
-                </div>
-            </div>
-
-
-            <div class="footerContainer">
-                <div class="save">
-                    Save
-                </div>
-
-
-                <a href="compare.html">
-                    <button class="compare">Compare</button>
-                </a>
-            </div>
-
-
+          <button class="runButton" onclick="runTest()">Run Test</button>
         </div>
 
+        <div class="bodyContainer">
+          <div class="scrollableTextbox"></div>
 
-        <!-- <script src="./script.js"></script> -->
-    </body>
+          <button class="moreInformation" onclick="infoPopup()">i</button>
+          <div class="form-moreInformation" id="myMoreInformation">
+            <form class="infoPopup-container">
+              <h1>More Information</h1>
+              <h2>Precision:</h2>
+              <p>How often a model correctly predicts the positive class</p>
+              <h2>Recall:</h2>
+              <p>
+                How often a model correctly identifies true positives from all
+                actual positives
+              </p>
+              <h2>Accuracy:</h2>
+              <p>How often a model correctly predicts the outcome</p>
+              <h2>F1-Score:</h2>
+              <p>Measure of the harmonic mean of precision recall</p>
+              <button
+                type="button"
+                class="buttonCancel"
+                onclick="closeInfoPopup()"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footerContainer">
+          <div class="save">Save</div>
+
+          <a href="compare.html">
+            <button class="compare">Compare</button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- <script src="./script.js"></script> -->
+  </body>
 </html>
-
-
-
-
-
-
