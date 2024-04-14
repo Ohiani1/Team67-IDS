@@ -1,0 +1,8 @@
+pandas
+numpy
+scikit-learn
+lightgbm
+catboost
+xgboost==2.0.3
+river
+statistics
