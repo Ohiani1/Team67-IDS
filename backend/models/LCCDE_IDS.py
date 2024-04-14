@@ -28,13 +28,14 @@ def LCCDE_IDS():
     y_pred = lg.predict(X_test)
     # print(classification_report(y_test,y_pred))
 
-    metrics.update([('LightBM',{
+    metrics.update([('LightGBM',{
         "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
         "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "LightBM Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
+        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
         "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
         "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
     })])
+    lg_f1=f1_score(y_test, y_pred, average=None)
 
     # Train the XGBoost algorithm
     import xgboost as xgb
@@ -52,10 +53,11 @@ def LCCDE_IDS():
     metrics.update([('XGBoost',{
         "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
         "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "LightBM Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
+        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
         "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
         "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
     })])
+    xg_f1=f1_score(y_test, y_pred, average=None)
 
     # Train the CatBoost algorithm
     import catboost as cbt
@@ -69,19 +71,29 @@ def LCCDE_IDS():
     metrics.update([('CatBoost',{
         "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
         "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "LightBM Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
+        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
         "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
         "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
     })])
+    cb_f1=f1_score(y_test, y_pred, average=None)
+
+    model=[]
+    for i in range(len(lg_f1)):
+        if max(lg_f1[i],xg_f1[i],cb_f1[i]) == lg_f1[i]:
+            model.append(lg)
+        elif max(lg_f1[i],xg_f1[i],cb_f1[i]) == xg_f1[i]:
+            model.append(xg)
+        else:
+            model.append(cb)
 
     # Implementing LCCDE
-    yt, yp = LCCDE(X_test, y_test, m1 = lg, m2 = xg, m3 = cb)
+    yt, yp = LCCDE(X_test, y_test, m1 = lg, m2 = xg, m3 = cb, model = model)
 
     # The performance of the proposed lCCDE model
     metrics.update([('LCCDE',{
         "Accuracy": str(round(accuracy_score(yt, yp)*100,2)),
         "Precision": str(round(precision_score(yt, yp, average='weighted')*100,2)),
-        "LightBM Recall":str(round(recall_score(yt, yp, average='weighted')*100,2)),
+        "Recall":str(round(recall_score(yt, yp, average='weighted')*100,2)),
         "Average F1": str(round(f1_score(yt, yp, average='weighted')*100,2)),
         "F1 for each type of attack": str(f1_score(yt, yp, average=None))
     })])

@@ -1,5 +1,6 @@
 from river import stream
 import numpy as np
+from statistics import mode
 
 def LCCDE(X_test, y_test, m1, m2, m3, model):
     i = 0
