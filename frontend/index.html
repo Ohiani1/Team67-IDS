@@ -99,6 +99,102 @@
         </div>
       </div>
     </section>
+    <section id = "system2">
+        <div class="title_compare">Compare Results</div>
+        <div class="toolContainer">
+        <div class="headerContainer">
+                 <!-- <p id="title">
+                Machine Learning Algorithm Development Tool for IDS
+            </p> -->
+
+
+               <div class="dropdown">
+                    <form action="index.html" method="GET">
+                        <label for="model">Choose Model:</label><br>
+                        <select id="model" name="model">
+                            <option value="LCCDE">LCCDE</option>
+                            <option value="MHT">MHT</option>
+                            <option value="Decision Tree">Decision Tree</option>
+                        </select>
+                    </form>
+                </div>
+
+
+                <div class="dropdown">
+                    <form action="index.html" method="GET">
+                        <label for="dataset">Choose Dataset:</label><br>
+                        <select id="dataset" name="dataset">
+                            <option value="CICIDS2017">CICIDS2017</option>
+                        </select>
+                    </form>
+                </div>
+
+
+                <div class="dropdown">
+                    <form action="index.html" method="GET">
+                        <label for="test">Open Test:</label><br>
+                        <select id="test" name="test">
+                            <option value="example">Prev Test</option>
+                        </select>
+                    </form>
+                </div>
+
+
+                <button class="runButton" onclick="runTest()">Run Test</button>
+            </div>
+
+
+            <div class="bodyContainerHeader">
+                <div class="bCHeader1">Console Output for Current Test:</div>
+                <div class="bCHeader1">Console Output from Previous Test:</div>
+            </div>
+
+
+            <div class="bodyContainer">
+                <div class="scrollableTextbox2">
+                   
+                </div>
+                <div class="scrollableTextbox2">
+                   
+                </div>
+
+
+               
+                <button class="moreInformation" onclick="infoPopup()">i</button>
+                <div class="form-moreInformation" id="myMoreInformation">
+                    <form class="infoPopup-container">
+                        <h1>More Information</h1>
+                        <h2>Precision:</h2>
+                        <p>How often a model correctly predicts the positive class</p>
+                        <h2>Recall:</h2>
+                        <p>How often a model correctly identifies true positives from all actual positives</p>
+                        <h2>Accuracy:</h2>
+                        <p>How often a model correctly predicts the outcome</p>
+                        <h2>F1-Score:</h2>
+                        <p>Measure of the harmonic mean of precision recall</p>
+                        <button type="button" class="buttonCancel" onclick="closeInfoPopup()">Close</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="footerContainer">
+                <div class="save2">
+                    Save
+                </div>
+
+
+                <a href="index.html">
+                    <button class="compare">Homepage</button>
+                </a>
+            </div>
+
+
+        </div>
+
+
+        <script src="./script.js"></script>
+    </section>
     <!-- <script src="./script.js"></script> -->
   </body>
 </html>
