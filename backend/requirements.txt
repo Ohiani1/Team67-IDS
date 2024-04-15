@@ -5,6 +5,6 @@ lightgbm
 river
 statistics
 flask
-dotenv
+python-dotenv
 pymongo
 bson
