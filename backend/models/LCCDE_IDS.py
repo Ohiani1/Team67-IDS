@@ -99,5 +99,3 @@ def LCCDE_IDS():
     })])
 
     return metrics
-
-print(LCCDE_IDS())

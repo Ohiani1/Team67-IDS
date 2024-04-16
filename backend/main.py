@@ -7,6 +7,8 @@ import datetime
 from pymongo import MongoClient
 from bson.json_util import dumps
 from bson.objectid import ObjectId
+from models.LCCDE_IDS import LCCDE_IDS
+from models.Tree_based_IDS import tree_based_IDS
 
 
 app = Flask(__name__)
@@ -19,6 +21,7 @@ client = MongoClient(connection_string)
 model_runs_db = client.model_Runs
 collection = model_runs_db.model_Runs
 
+#########################################################################################################################################
 
 @app.route('/save', methods=['POST'])
 def save_run():
@@ -42,6 +45,33 @@ def save_run():
     else:
         return not_found()
     
+#########################################################################################################################################
+
+@app.route('/prevruns')
+def prevRuns():
+    prevRuns = collection.find()
+    resp = dumps(prevRuns)
+    return resp
+    
+#########################################################################################################################################
+
+@app.route('/run/<modelId>')
+def run(modelId):
+    if modelId == "tree":
+        result = tree_based_IDS()
+        return result
+    elif modelId == "lccde":
+        result = LCCDE_IDS()
+        return result
+    elif modelId == "mlh":
+        result = "hyper_parameter"
+        return result
+    else:
+        return not_found()
+        
+#########################################################################################################################################
+
+
 
 @app.errorhandler(404)
 def not_found(error=None):
