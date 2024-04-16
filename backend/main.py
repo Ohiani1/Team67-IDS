@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
@@ -20,6 +20,10 @@ connection_string = f"mongodb+srv://ohianiabdulkadir7:{password}@team67-ids.bsj4
 client = MongoClient(connection_string)
 model_runs_db = client.model_Runs
 collection = model_runs_db.model_Runs
+
+@app.route('/')
+def index():
+    render_template('../frontend/index.html')
 
 #########################################################################################################################################
 
