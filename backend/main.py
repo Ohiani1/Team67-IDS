@@ -49,7 +49,7 @@ def save_run():
 #########################################################################################################################################
 
 ## get runs with this api
-@app.route('/prevruns')
+@app.route('/prevruns', methods=['GET'])
 def prevRuns():
     prevRuns = collection.find()
     resp = dumps(prevRuns)
@@ -58,7 +58,7 @@ def prevRuns():
 #########################################################################################################################################
 
 ## run a model with this api
-@app.route('/run/<modelId>')
+@app.route('/run/<modelId>', methods=['GET'])
 def run(modelId):
     if modelId == "tree":
         result = tree_based_IDS()
