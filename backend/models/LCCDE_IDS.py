@@ -6,7 +6,7 @@ import lightgbm as lgb
 import catboost as cbt
 import xgboost as xgb
 from statistics import mode
-from lccde import LCCDE
+from .lccde import LCCDE
 
 def LCCDE_IDS():
     metrics = {}
