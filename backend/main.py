@@ -23,6 +23,7 @@ collection = model_runs_db.model_Runs
 
 #########################################################################################################################################
 
+## upload runs with this api
 @app.route('/save', methods=['POST'])
 def save_run():
 
@@ -47,6 +48,7 @@ def save_run():
     
 #########################################################################################################################################
 
+## get runs with this api
 @app.route('/prevruns')
 def prevRuns():
     prevRuns = collection.find()
@@ -55,6 +57,7 @@ def prevRuns():
     
 #########################################################################################################################################
 
+## run a model with this api
 @app.route('/run/<modelId>')
 def run(modelId):
     if modelId == "tree":
@@ -90,13 +93,7 @@ def not_found(error=None):
 
 
 
-
-
-
-
-
-
-
+## main function to run the server
 if __name__ == "__main__":
     app.run()
 
