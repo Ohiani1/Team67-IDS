@@ -21,9 +21,12 @@ client = MongoClient(connection_string)
 model_runs_db = client.model_Runs
 collection = model_runs_db.model_Runs
 
+app.template_folder = os.path.join(os.path.dirname(__file__), '../Frontend')
+app.static_folder = os.path.join(os.path.dirname(__file__), '../Frontend/static')
+
 @app.route('/')
 def index():
-    render_template('../frontend/index.html')
+    return render_template('index.html')
 
 #########################################################################################################################################
 
