@@ -1,10 +1,15 @@
 {
+    "version": 2,
     "builds": [
-        {
-          "src": "backend/main.py",
-          "use": "@vercel/python"
+      {
+        "src": "backend/main.py",
+        "use": "@vercel/static-build",
+        "config": {
+            "buildCommand": "pip install -r requirements.txt && python backend/main.py",
+            "distDir": "backend"
         }
-      ],
+      }
+    ],
     "routes": [
       {
         "src": "/(.*)",
