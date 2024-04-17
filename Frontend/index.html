@@ -57,8 +57,8 @@
                       <button type="button" class="buttonCancel" onclick="closeImportPopup()">Close</button>
                     </form>
                 </div> -->
+                <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button>
 
-          <button class="runButton" onclick="runTest()">Run Test</button>
         </div>
 
         <div class="bodyContainer">
@@ -92,6 +92,7 @@
 
         <div class="footerContainer">
           <div class="save">Save</div>
+          
 
           <a href="/compare">
             <button class="compare">Compare</button>
@@ -140,7 +141,14 @@
                 </div>
 
 
-                <button class="runButton" onclick="runTest()">Run Test</button>
+                <!-- <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button> -->
+                <button class="runButton" onclick="callBackendAPI()"> Run Test </button>
+               
+
+
+
+
+              
             </div>
 
 
@@ -193,7 +201,7 @@
         </div>
 
 
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script src="static/script.js"></script>
     </section>
     <!-- <script src="./script.js"></script> -->
   </body>

@@ -24,7 +24,7 @@ def tree_based_IDS():
     # L. Yang, A. Moubayed, I. Hamieh and A. Shami, "Tree-Based Intelligent Intrusion Detection System in Internet of Vehicles," 2019 IEEE Global Communications Conference (GLOBECOM), 2019, pp. 1-6, doi: 10.1109/GLOBECOM38437.2019.9013892.  
 
     ### Preprocessing (normalization and padding values)
-    df = pd.read_csv('../CICIDS2017_sample.csv')
+    df = pd.read_csv('CICIDS2017_sample.csv')
 
     # Min-max normalization
     numeric_features = df.dtypes[df.dtypes != 'object'].index
