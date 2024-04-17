@@ -57,12 +57,34 @@
                       <button type="button" class="buttonCancel" onclick="closeImportPopup()">Close</button>
                     </form>
                 </div> -->
+                <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button>
+                <button class="save_button" > Save Results</button>
 
-          <button class="runButton" onclick="runTest()">Run Test</button>
+                <button class="compare_button" > Compare</button>
+
         </div>
 
         <div class="bodyContainer">
-          <div class="scrollableTextbox"></div>
+          <div class="scrollableTextbox">
+            <div class="precision">
+              <h1 class="precision_title">Precision</h1>
+              <p class="precision_api">dummy text</p>
+            </div>
+            <div class="recall">
+              <h1 class="recall_title">Recall</h1>
+              <p class="recall_api">13</p>
+            </div>
+            
+            <div class="accuracy">
+              <h1 class="accuracy_title">Accuracy</h1>
+              <p class="accuracy_api"></p>
+            </div>
+            <div class="f1">
+              <h1 class="f1_title">F-1 Score</h1>
+              <p class="f1_api"></p>
+            </div>
+           
+          </div>
 
           <button class="moreInformation" onclick="infoPopup()">i</button>
           <div class="form-moreInformation" id="myMoreInformation">
@@ -91,11 +113,12 @@
         </div>
 
         <div class="footerContainer">
-          <div class="save">Save</div>
 
-          <a href="/compare">
+          
+
+          <!-- <a href="/compare">
             <button class="compare">Compare</button>
-          </a>
+          </a> -->
         </div>
       </div>
     </section>
@@ -108,31 +131,13 @@
             </p> -->
 
 
-               <div class="dropdown">
-                    <form action="index.html" method="GET">
-                        <label for="model">Choose Model:</label><br>
-                        <select id="model" name="model">
-                            <option value="LCCDE">LCCDE</option>
-                            <option value="MHT">MHT</option>
-                            <option value="Decision Tree">Decision Tree</option>
-                        </select>
-                    </form>
-                </div>
+       
 
+             
 
                 <div class="dropdown">
                     <form action="index.html" method="GET">
-                        <label for="dataset">Choose Dataset:</label><br>
-                        <select id="dataset" name="dataset">
-                            <option value="CICIDS2017">CICIDS2017</option>
-                        </select>
-                    </form>
-                </div>
-
-
-                <div class="dropdown">
-                    <form action="index.html" method="GET">
-                        <label for="test">Open Test:</label><br>
+                        <label for="test">Select Previous Test:</label><br>
                         <select id="test" name="test">
                             <option value="example">Prev Test</option>
                         </select>
@@ -140,22 +145,64 @@
                 </div>
 
 
-                <button class="runButton" onclick="runTest()">Run Test</button>
+                <!-- <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button> -->
+                <button class="runButton" onclick="callBackendAPI()"> Load Previous Test </button>
+               
+
+
+
+
+              
             </div>
 
 
             <div class="bodyContainerHeader">
                 <div class="bCHeader1">Console Output for Current Test:</div>
-                <div class="bCHeader1">Console Output from Previous Test:</div>
+              
             </div>
 
 
             <div class="bodyContainer">
                 <div class="scrollableTextbox2">
-                   
-                </div>
+                  <div class="precision">
+                    <h1 class="precision_title">Precision</h1>
+                    <p class="precision_api">dummy text</p>
+                  </div>
+                  <div class="recall">
+                    <h1 class="recall_title">Recall</h1>
+                    <p class="recall_api">13</p>
+                  </div>
+                  
+                  <div class="accuracy">
+                    <h1 class="accuracy_title">Accuracy</h1>
+                    <p class="accuracy_api"></p>
+                  </div>
+                  <div class="f1">
+                    <h1 class="f1_title">F-1 Score</h1>
+                    <p class="f1_api"></p>
+                  </div>
+                  </div>
+     
+                <div class="bCHeader1">Console Output from Previous Test:</div>
                 <div class="scrollableTextbox2">
-                   
+                  <div class="precision">
+                    <h1 class="precision_title">Precision</h1>
+                    <p class="precision_api">dummy text</p>
+                  </div>
+                  <div class="recall">
+                    <h1 class="recall_title">Recall</h1>
+                    <p class="recall_api">13</p>
+                  </div>
+                  
+                  <div class="accuracy">
+                    <h1 class="accuracy_title">Accuracy</h1>
+                    <p class="accuracy_api"></p>
+                  </div>
+                  <div class="f1">
+                    <h1 class="f1_title">F-1 Score</h1>
+                    <p class="f1_api"></p>
+                  </div>
+                    </div>
                 </div>
 
 
@@ -179,22 +226,22 @@
 
 
             <div class="footerContainer">
-                <div class="save2">
-                    Save
-                </div>
+               
 
 
-                <a href="/">
-                    <button class="compare">Homepage</button>
-                </a>
+             
             </div>
 
 
         </div>
 
 
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script src="static/script.js"></script>
     </section>
+    
+    <footer>
+      <div class="footer_text">Designed and Developed for UTD IDS Researchers</div>
+    </footer>
     <!-- <script src="./script.js"></script> -->
   </body>
 </html>
