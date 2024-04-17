@@ -66,13 +66,13 @@ def prevRuns():
 ## run a model with this api
 @app.route('/run/<modelId>', methods=['GET'])
 def run(modelId):
-    if modelId == "tree":
+    if modelId == "Decision Tree":
         result = tree_based_IDS()
         return result
-    elif modelId == "lccde":
+    elif modelId == "LCCDE":
         result = LCCDE_IDS()
         return result
-    elif modelId == "mlh":
+    elif modelId == "MHT":
         result = "hyper_parameter"
         return result
     else:
