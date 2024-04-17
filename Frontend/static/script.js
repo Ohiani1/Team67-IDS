@@ -19,7 +19,7 @@ function closeInfoPopup() {
 
 var run;
 
-var homeUrl = "https://669e-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://bf4a-153-33-34-246.ngrok-free.app"
 
 
 
