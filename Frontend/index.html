@@ -57,7 +57,7 @@
                       <button type="button" class="buttonCancel" onclick="closeImportPopup()">Close</button>
                     </form>
                 </div> -->
-                <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button>
+                <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value);">Run Test</button>
                 <button class="save_button" > Save Results</button>
 
                 <button class="compare_button" > Compare</button>
@@ -66,6 +66,7 @@
 
         <div class="bodyContainer">
           <div class="scrollableTextbox">
+            <div id="response"></div>
             <div class="precision">
               <h1 class="precision_title">Precision</h1>
               <p class="precision_api">dummy text</p>

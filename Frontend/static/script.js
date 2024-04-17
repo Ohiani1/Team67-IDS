@@ -19,46 +19,40 @@ function closeInfoPopup() {
 
 var run;
 
-var homeUrl = "https://cd06-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://669e-153-33-34-246.ngrok-free.app"
 
 
 
-function callBackendAPI() {
-    // Get the selected option value from the dropdown
-    var selectedOption = document.getElementById("model").value;
-
-    // Update the button text to the selected option
-    document.querySelector('.runButton').textContent = selectedOption;
-
-    // Construct the URL with selected option as path parameter
-    var url = `${homeUrl}/run/` + encodeURIComponent(selectedOption);
-
-    // Send a GET request to the backend API
-    fetch(url)
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-            run = "did not work";
-        }
-        return response.json();
-    })
-    .then(data => {
+async function callBackendAPI() {
+    try {
+      // Get the selected option value from the dropdown
+      const selectedOption = document.getElementById("model").value;
+  
+      // Update the button text to the selected option
+      document.querySelector('.runButton').textContent = selectedOption;
+  
+      // Construct the URL with selected option as path parameter
+      const url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}`;
+  
+      // Send a GET request to the backend API
+      const response = await fetch(url, { mode: 'no-cors' });
+  
+      if (response.ok) {
+        const data = await response.json();
         console.log('Response from backend (GET):', data);
         document.getElementById("response").innerHTML = "GET Response: " + JSON.stringify(data);
-        run = data;
-        
-        document.querySelector('.runButton').textContent = run;
-
-        // Do something with the response from the backend if needed
-
-    })
-    .catch(error => {
-        console.error('There was a problem with your fetch operation:', error);
+        run = data; // Do something with the response from the backend if needed
+      } else {
+        const text = await response.text();
+        console.error(`Network response was not ok (${response.status}): ${text}`);
         document.querySelector('.runButton').textContent = "fail";
-
-    });
-}
+        throw new Error(`Network response was not ok (${response.status}): ${text}`);
+      }
+    } catch (error) {
+      console.error('There was a problem with your fetch operation:', error);
+      document.querySelector('.runButton').textContent = "fail";
+    }
+  }
 
 document.getElementById("model").addEventListener("change", function() {
     var selectedOption = this.value;

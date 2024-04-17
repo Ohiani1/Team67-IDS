@@ -56,24 +56,26 @@ def save_run():
 def prevRuns():
     prevRuns = collection.find()
     resp = dumps(prevRuns)
+    resp.status_code = 200
     return resp
     
 #########################################################################################################################################
 
 ## run a model with this api
-@app.route('/run/<modelId>', methods=['GET'])
+@app.route('/run/<modelId>', methods=['GET', 'POST'])
 def run(modelId):
     if modelId == "Decision Tree":
         result = tree_based_IDS()
-        return result
     elif modelId == "LCCDE":
         result = LCCDE_IDS()
-        return result
     elif modelId == "MHT":
-        result = {"result":"lol"}
-        return result
+        result = {"result": "lol"}
     else:
+        print(modelId + "we've reached end!")
         return not_found()
+
+    print(modelId + " we've reached end!")
+    return jsonify(result)
         
 #########################################################################################################################################
 
