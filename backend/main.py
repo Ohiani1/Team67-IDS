@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import request, jsonify, render_template 
-from dotenv import load_dotenv, find_dotenv 
 import os
 import pprint
 import datetime
@@ -12,10 +11,8 @@ from models.Tree_based_IDS import tree_based_IDS
 
 
 app = Flask(__name__)
-load_dotenv(find_dotenv())
 
-password = os.environ.get("MONGODB_PWD")
-connection_string = f"mongodb+srv://ohianiabdulkadir7:{password}@team67-ids.bsj4xtb.mongodb.net/?retryWrites=true&w=majority&appName=Team67-IDS"
+connection_string = f"mongodb+srv://ohianiabdulkadir7:MCMtakB28bAFxRJN@team67-ids.bsj4xtb.mongodb.net/?retryWrites=true&w=majority&appName=Team67-IDS"
 
 client = MongoClient(connection_string)
 model_runs_db = client.model_Runs
