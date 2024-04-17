@@ -19,7 +19,7 @@ function closeInfoPopup() {
 
 var run;
 
-var homeUrl = "https://3a32-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://8dae-153-33-34-246.ngrok-free.app"
 
 
 
@@ -40,8 +40,8 @@ async function callBackendAPI() {
       if (response.ok) {
         const data = await response.json();
         console.log('Response from backend (GET):', data);
-        //document.getElementById("response").innerHTML = "GET Response: " + JSON.stringify(data);
-        run = data; // Do something with the response from the backend if needed
+        document.getElementById("response").innerHTML = "GET Response: " + JSON.stringify(data);
+        //run = data; // Do something with the response from the backend if needed
       } else {
         const text = await response.text();
         console.error(`Network response was not ok (${response.status}): ${text}`);
