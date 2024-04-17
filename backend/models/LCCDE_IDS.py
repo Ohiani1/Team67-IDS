@@ -10,7 +10,7 @@ from .lccde import LCCDE
 
 def LCCDE_IDS():
     metrics = {}
-    df = pd.read_csv("CICIDS2017_sample_km.csv")
+    df = pd.read_csv("../CICIDS2017_sample_km.csv")
 
     X = df.drop(['Label'],axis=1)
     y = df['Label']
