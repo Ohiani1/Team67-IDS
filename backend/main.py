@@ -27,12 +27,6 @@ app.static_folder = os.path.join(os.path.dirname(__file__), '../Frontend/static'
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/compare')
-def compare():
-    return render_template('compare.html')
-
-
 #########################################################################################################################################
 
 ## upload runs with this api
