@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
 
 
@@ -92,7 +92,7 @@
                 </div>
 
 
-                <a href="index.html">
+                <a href="/">
                     <button class="compare">Homepage</button>
                 </a>
             </div>
@@ -101,7 +101,7 @@
         </div>
 
 
-        <script src="./script.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </section>
     </body>
 </html>
