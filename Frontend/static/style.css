@@ -1,6 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Outfit:wght@300;600&family=Playfair+Display:wght@500;600&family=Playfair:opsz@5..1200&family=Poppins:ital,wght@0,400;1,600&display=swap')
 ;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body{
     background: linear-gradient(to bottom, #ffffff, #ffffff);
 }
@@ -8,7 +14,7 @@ body{
      animation: slideIn 1.5s;
 
 width: 1100px;
-  height: 670px;
+  height: auto;
   background: rgb(51, 49, 49);
   padding: 30px;
   border: 3px solid rgb(0, 0, 0);
@@ -26,9 +32,14 @@ width: 1100px;
     color:black;
 }
 .description{
-    font-size:20px;;
+    font-size:22px;;
     font-family: 'Jost', serif;
     text-align: center;
+    margin-top:10px;
+}
+.precision_api,.accuracy_api,.recall_api,.f1.api{
+  font-size:20px;
+  margin-top:30px;
 }
 .title_container{
     display: flex;
@@ -43,6 +54,7 @@ width: 1100px;
 }
 #system, #system2{
     margin-top: 20px;;
+    margin-bottom:20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,6 +83,9 @@ width: 1100px;
   /* border-radius: 10px;
     border: 3px solid white; */
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown {
@@ -172,29 +187,79 @@ width: 1100px;
 
 .runButton {
     font-family: "Jost", sans-serif;
+
   text-align: center;
   width: auto;
   height: auto;
   display: inline-block;
-  margin-right: 60px;
+  margin-right: 28px;
   background: rgb(78, 212, 78);
   border: 2px solid rgb(8, 235, 8);
   border-radius: 20px;
-  padding:10px;
+  padding:20px;
   color:white;
   cursor: pointer;
-  font-size:12px;
+  font-size:20px;
   transition:300ms;
 }
 .runButton:hover{
     background-color: rgb(30, 30, 30);
     color:white;
     transition:300ms;
-    
 }
+.compare_button{
+  font-family: "Jost", sans-serif;
+
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  margin-left:15px;
+  background: rgb(229, 130, 68);
+  border: 2px solid rgb(239, 120, 1);
+  border-radius: 20px;
+  padding:20px;
+  color:white;
+  cursor: pointer;
+  font-size:20px;
+  transition:300ms;
+}
+.compare_button:hover{
+  background-color: rgb(30, 30, 30);
+  color:white;
+  transition:300ms;
+}
+.save_button{
+  font-family: "Jost", sans-serif;
+
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: inline-block;
+
+  background: rgb(66, 178, 231);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  padding:20px;
+  color:white;
+  cursor: pointer;
+  font-size:20px;
+  transition:300ms;
+  margin-right: 20px;
+
+}
+.save_button:hover{
+  background-color: rgb(30, 30, 30);
+  color:white;
+  transition:300ms;
+  border: 2px solid rgb(49, 46, 220);
+}
+
+
 
 label {
   margin-bottom: 5px;
+  font-size: 20px;;
 }
 
 select {
@@ -206,8 +271,10 @@ select {
     border: 3px solid white; */
   padding: 10px;
   position: relative;
-  justify-content: center;
-
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height:auto;
 }
 
 .scrollableTextbox {
@@ -221,6 +288,8 @@ select {
   border-radius: 20px;
   text-align: center;
   overflow: scroll;
+  display: flex;
+  justify-content: space-between;
 }
 
 .moreInformation {
@@ -236,6 +305,7 @@ select {
   border: 10px solid rgb(109, 109, 247);
   border-radius: 50%;
   text-align: center;
+  margin-left:1050px;
 }
 
 .form-moreInformation {
@@ -255,8 +325,14 @@ select {
   background-color: rgb(134, 134, 134);
   border: 5px solid rgb(0, 0, 0);
   border-radius: 20px;
-}
 
+}
+.precision,.recall,.accuracy,.f1{
+  width:25%;
+}
+.precision_title,.recall_title,.accuracy_title,.f1_title{
+  font-family: 'Jost', serif;
+}
 .infoPopup-container .buttonCancel {
   background-color: red;
   color: white;
@@ -308,21 +384,24 @@ select {
 }
 
 .bCHeader1 {
-  font-family: "Arial", "Times New Roman", monospace;
+  font-family: "Jost", sans-serif;
   font-weight: bold;
   text-align: left;
   width: auto;
   height: auto;
   display: inline-block;
   margin-right: 250px;
-  color: black;
+  margin-top:10px;
+  color: rgb(255, 249, 249);
   margin-left: 10px;
+  font-size:22px;
 }
+
 
 .scrollableTextbox2 {
   font-family: "Arial", "Times New Roman", monospace;
-  height: 470px;
-  width: 470px;
+  height: 300px;
+  width: 90%;
   display: inline-block;
   margin-right: 20px;
   background: white;
@@ -330,6 +409,9 @@ select {
   border-radius: 20px;
   text-align: center;
   overflow: scroll;
+  margin-bottom:15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .save2 {
@@ -345,6 +427,17 @@ select {
   text-align: center;
   margin-right: 10px;
   margin-left: 840px;
+}
+footer{
+  height:80px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer_text{
+  color:white;
+  font-family: 'Jost', serif;
 }
 @keyframes slideIn {
     from {

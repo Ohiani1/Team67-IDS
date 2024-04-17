@@ -29,7 +29,7 @@ function callBackendAPI() {
     document.querySelector('.runButton').textContent = selectedOption;
 
     // Construct the URL with selected option as path parameter
-    var url = 'https://86c0-70-121-35-140.ngrok-free.app/run/' + encodeURIComponent(selectedOption);
+    var url = 'https://d13c-70-121-35-140.ngrok-free.app/run/' + encodeURIComponent(selectedOption);
 
     // Send a GET request to the backend API
     fetch(url)
