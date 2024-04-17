@@ -73,7 +73,7 @@ def run(modelId):
         result = LCCDE_IDS()
         return result
     elif modelId == "MHT":
-        result = "hyper_parameter"
+        result = {"result":"lol"}
         return result
     else:
         return not_found()
