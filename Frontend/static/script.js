@@ -19,11 +19,13 @@ function closeInfoPopup() {
 
 var run;
 
-var homeUrl = "https://8dae-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://a633-153-33-34-246.ngrok-free.app"
 
 
 
 async function callBackendAPI() {
+    const loadingCircle = document.getElementById('loading-circle');
+    loadingCircle.classList.remove('hidden');
     try {
       // Get the selected option value from the dropdown
       const selectedOption = document.getElementById("model").value;
@@ -39,16 +41,19 @@ async function callBackendAPI() {
   
       if (response.ok) {
         const data = await response.json();
+        loadingCircle.classList.add('hidden');
         console.log('Response from backend (GET):', data);
         document.getElementById("response").innerHTML = "GET Response: " + JSON.stringify(data);
         //run = data; // Do something with the response from the backend if needed
       } else {
         const text = await response.text();
+        loadingCircle.classList.add('hidden');
         console.error(`Network response was not ok (${response.status}): ${text}`);
         document.querySelector('.runButton').textContent = "fail";
         throw new Error(`Network response was not ok (${response.status}): ${text}`);
       }
     } catch (error) {
+        loadingCircle.classList.add('hidden');
       console.error('There was a problem with your fetch operation:', error);
       document.querySelector('.runButton').textContent = "fail";
     }
