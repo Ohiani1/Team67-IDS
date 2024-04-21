@@ -8,17 +8,48 @@ import xgboost as xgb
 from statistics import mode
 from .lccde import LCCDE
 
-def LCCDE_IDS():
+def LCCDE_IDS(file):
     metrics = {}
-    df = pd.read_csv("CICIDS2017_sample_km.csv")
+    df = pd.read_csv(f"{file}.csv")
+
+    # Replace infinity values with NaN
+    numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
+    df[numerical_cols] = df[numerical_cols].replace([np.inf, -np.inf], np.nan)
+
+    # Replace extremely large values with NaN
+    max_value = 1e+15  # Set the maximum allowed value
+    df[numerical_cols] = df[numerical_cols].mask(df[numerical_cols].abs() > max_value, np.nan)
+
+    df = df.dropna()
+
+    # Create a dictionary to map labels to their numeric values
+    label_map = {'BENIGN': 0, 'Bot': 1, 'BruteForce': 2, 'DoS': 3, 'Infiltration': 4, 'PortScan': 5, 'WebAttack': 6}
+
+    # Replace the non-numeric labels with their numeric values
+    df['Label'] = df['Label'].apply(lambda x: label_map.get(x, x) if pd.notna(x) and not str(x).isdigit() else x)
+
+    df.to_csv('modified_file.csv', index=False)
 
     X = df.drop(['Label'],axis=1)
     y = df['Label']
     X_train, X_test, y_train, y_test = train_test_split(X,y, train_size = 0.8, test_size = 0.2, random_state = 0) #shuffle=False
 
     from imblearn.over_sampling import SMOTE
-    smote=SMOTE(n_jobs=-1,sampling_strategy={2:1000,4:1000})
+    from collections import Counter
+    # smote=SMOTE(n_jobs=-1,sampling_strategy={2:1000,4:1000})
 
+    # Get the class distribution
+    class_counts = Counter(y)
+    print("Class distribution:", class_counts)
+
+    # Define the sampling_strategy
+    sampling_strategy = {}
+    for class_label, count in class_counts.items():
+        if count < 1000:  # Adjust the desired number of samples as per your requirements
+            sampling_strategy[class_label] = 1000  # Oversample minority classes to 1000 samples
+
+    # Apply SMOTE with the defined sampling_strategy
+    smote = SMOTE(n_jobs=-1, sampling_strategy=sampling_strategy)
     X_train, y_train = smote.fit_resample(X_train, y_train)
 
     # Train the LightGBM algorithm
