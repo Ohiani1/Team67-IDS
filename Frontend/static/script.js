@@ -21,12 +21,14 @@ function scrollToCompareResults() {
   const compareResultsDiv = document.getElementById('compare-results');
   compareResultsDiv.scrollIntoView({ behavior: 'smooth' });
 }
+let called = 0;
+let updatedb = false;
 
 let metricsData = null;
 let currentModel = null;
 let currentDataSet = null
 
-var homeUrl = "https://56d7-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://27a1-153-33-34-246.ngrok-free.app"
 
 
 
@@ -60,6 +62,11 @@ async function callBackendAPI() {
         document.getElementById("recall_api").textContent = metrics.Recall
         document.getElementById("accuracy_api").textContent = metrics.Accuracy
         document.getElementById("f1_api").textContent = metrics.F1_score
+
+        document.getElementById("compare_precision").textContent = metrics.Precision
+        document.getElementById("comapre_recall").textContent = metrics.Recall
+        document.getElementById("compare_accuracy").textContent = metrics.Accuracy
+        document.getElementById("compare_f1").textContent = metrics.F1_score
         //run = data; // Do something with the response from the backend if needed
       } else {
         const text = await response.text();
@@ -85,6 +92,8 @@ document.getElementById("model").addEventListener("change", function() {
 });
 
 async function uploadDataToServer() {
+  const loadingCircle = document.getElementById('loading-circle');
+  loadingCircle.classList.remove('hidden');
 
   if (metricsData && currentDataSet && currentModel)
   {
@@ -107,13 +116,17 @@ async function uploadDataToServer() {
       });
 
       if (response.ok) {
+        loadingCircle.classList.add('hidden');
+        updatedb = true
         // Data was successfully uploaded
         console.log('Data uploaded successfully');
       } else {
+        loadingCircle.classList.add('hidden');
         // Error occurred while uploading data
         console.error('Error uploading data:', response.status);
       }
     } catch (error) {
+      loadingCircle.classList.add('hidden');
       // Handle network errors
       console.error('Network error:', error);
     }
@@ -122,6 +135,42 @@ async function uploadDataToServer() {
     console.log('No data available to upload.');
   }
   
+}
+
+async function fetchRuns() {
+  if (called == 0 || updatedb == true)
+  {
+    try {
+      // Fetch runs from the database (replace the URL with your actual API endpoint)
+      const response = await fetch(`${homeUrl}/prevruns`);
+      const data = await response.json();
+      
+      // Get the select element
+      const selectElement = document.getElementById('test');
+  
+      selectElement.innerHTML = '<option value="example">select test</option>';
+  
+      
+      // Add each run as an option to the select element
+      data.forEach(run => {
+        const option = document.createElement('option');
+        option.value = run.model
+        option.textContent = `${run.model} | ${run.dataset} | ${new Date(run.timestamp.$date).toLocaleString()}`
+        selectElement.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching runs:', error);
+    }
+  }
+  called++;
+  updatedb = false;
+  
+}
+
+// Add event listener to the select element
+if (called == 0 || updatedb == true)
+{
+  document.getElementById('test').addEventListener('click', fetchRuns);
 }
 
 

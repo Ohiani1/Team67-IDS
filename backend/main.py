@@ -59,7 +59,6 @@ def save_run():
 def prevRuns():
     prevRuns = collection.find()
     resp = dumps(prevRuns)
-    resp.status_code = 200
     return resp
     
 #########################################################################################################################################

@@ -149,14 +149,14 @@
                     <form action="index.html" method="GET">
                         <label for="test">Select Previous Test:</label><br>
                         <select id="test" name="test">
-                            <option value="example">Prev Test</option>
+                          
                         </select>
                     </form>
                 </div>
 
 
                 <!-- <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value); runTest()">Run Test</button> -->
-                <button class="runButton" onclick="callBackendAPI()"> Load Previous Test </button>
+                <!-- <button class="runButton" onclick="callBackendAPI()"> Load Previous Test </button> -->
                
 
 
@@ -176,20 +176,20 @@
                 <div class="scrollableTextbox2">
                   <div class="precision">
                     <h1 class="precision_title">Precision</h1>
-                    <p class="precision_api">dummy text</p>
+                    <p class="precision_api" id="compare_precision"></p>
                   </div>
                   <div class="recall">
                     <h1 class="recall_title">Recall</h1>
-                    <p class="recall_api">13</p>
+                    <p class="recall_api" id="compare_recall"></p>
                   </div>
                   
                   <div class="accuracy">
                     <h1 class="accuracy_title">Accuracy</h1>
-                    <p class="accuracy_api"></p>
+                    <p class="accuracy_api" id="compare_accuracy"></p>
                   </div>
                   <div class="f1">
                     <h1 class="f1_title">F-1 Score</h1>
-                    <p class="f1_api"></p>
+                    <p class="f1_api" id="compare_f1"></p>
                   </div>
                   </div>
      
@@ -197,11 +197,11 @@
                 <div class="scrollableTextbox2">
                   <div class="precision">
                     <h1 class="precision_title">Precision</h1>
-                    <p class="precision_api">dummy text</p>
+                    <p class="precision_api"></p>
                   </div>
                   <div class="recall">
                     <h1 class="recall_title">Recall</h1>
-                    <p class="recall_api">13</p>
+                    <p class="recall_api"></p>
                   </div>
                   
                   <div class="accuracy">
