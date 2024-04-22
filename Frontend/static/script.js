@@ -17,9 +17,16 @@ function closeInfoPopup() {
     document.getElementById("myMoreInformation").style.display = "none";
 }
 
-var run;
+function scrollToCompareResults() {
+  const compareResultsDiv = document.getElementById('compare-results');
+  compareResultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
 
-var homeUrl = "https://fb44-129-110-241-33.ngrok-free.app"
+let metricsData = null;
+let currentModel = null;
+let currentDataSet = null
+
+var homeUrl = "https://56d7-153-33-34-246.ngrok-free.app"
 
 
 
@@ -29,12 +36,15 @@ async function callBackendAPI() {
     try {
       // Get the selected option value from the dropdown
       const selectedOption = document.getElementById("model").value;
+      currentModel = selectedOption
+      const selectedDataset = document.getElementById("dataset").value;
+      currentDataSet = selectedDataset
   
       // Update the button text to the selected option
       document.querySelector('.runButton').textContent = selectedOption;
   
       // Construct the URL with selected option as path parameter
-      const url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}`;
+      const url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}/${encodeURIComponent(selectedDataset)}`;
   
       // Send a GET request to the backend API
       const response = await fetch(url, { mode: 'no-cors' });
@@ -43,7 +53,13 @@ async function callBackendAPI() {
         const data = await response.json();
         loadingCircle.classList.add('hidden');
         console.log('Response from backend (GET):', data);
-        document.getElementById("response").innerHTML = "GET Response: " + JSON.stringify(data);
+        const metrics = data[selectedOption]
+        metricsData = metrics;
+
+        document.getElementById("precision_api").textContent = metrics.Precision
+        document.getElementById("recall_api").textContent = metrics.Recall
+        document.getElementById("accuracy_api").textContent = metrics.Accuracy
+        document.getElementById("f1_api").textContent = metrics.F1_score
         //run = data; // Do something with the response from the backend if needed
       } else {
         const text = await response.text();
@@ -67,6 +83,46 @@ document.getElementById("model").addEventListener("change", function() {
     // For now, let's update the "Run Test" button text to match the selected option
     document.querySelector('.runButton').textContent = selectedOption;
 });
+
+async function uploadDataToServer() {
+
+  if (metricsData && currentDataSet && currentModel)
+  {
+    // Define the API endpoint URL
+    const uploadApiUrl = `${homeUrl}/save`;
+    const paylod = {
+      model: currentModel,
+      dataset: currentDataSet,
+      metrics: metricsData
+    }
+
+    try {
+      // Send a POST request with the data payload
+      const response = await fetch(uploadApiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paylod)
+      });
+
+      if (response.ok) {
+        // Data was successfully uploaded
+        console.log('Data uploaded successfully');
+      } else {
+        // Error occurred while uploading data
+        console.error('Error uploading data:', response.status);
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Network error:', error);
+    }
+  }
+  else {
+    console.log('No data available to upload.');
+  }
+  
+}
 
 
 

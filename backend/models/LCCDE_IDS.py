@@ -9,6 +9,7 @@ from statistics import mode
 from .lccde import LCCDE
 
 def LCCDE_IDS(file):
+
     metrics = {}
     df = pd.read_csv(f"{file}.csv")
 
@@ -27,8 +28,6 @@ def LCCDE_IDS(file):
 
     # Replace the non-numeric labels with their numeric values
     df['Label'] = df['Label'].apply(lambda x: label_map.get(x, x) if pd.notna(x) and not str(x).isdigit() else x)
-
-    df.to_csv('modified_file.csv', index=False)
 
     X = df.drop(['Label'],axis=1)
     y = df['Label']
@@ -60,11 +59,11 @@ def LCCDE_IDS(file):
     # print(classification_report(y_test,y_pred))
 
     metrics.update([('LightGBM',{
-        "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
-        "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
-        "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
-        "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
+        "Accuracy": str(accuracy_score(y_test, y_pred)*100),
+        "Precision": str(precision_score(y_test, y_pred, average='weighted')*100),
+        "Recall":str(recall_score(y_test, y_pred, average='weighted')*100),
+        "F1_score": str(f1_score(y_test, y_pred, average='weighted')*100),
+        "F1_or_each_type_of_attack": str(f1_score(y_test, y_pred, average=None))
     })])
     lg_f1=f1_score(y_test, y_pred, average=None)
 
@@ -82,11 +81,11 @@ def LCCDE_IDS(file):
 
 
     metrics.update([('XGBoost',{
-        "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
-        "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
-        "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
-        "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
+        "Accuracy": str(accuracy_score(y_test, y_pred)*100),
+        "Precision": str(precision_score(y_test, y_pred, average='weighted')*100),
+        "Recall":str(recall_score(y_test, y_pred, average='weighted')*100),
+        "F1_score": str(f1_score(y_test, y_pred, average='weighted')*100),
+        "F1_or_each_type_of_attack": str(f1_score(y_test, y_pred, average=None))
     })])
     xg_f1=f1_score(y_test, y_pred, average=None)
 
@@ -101,10 +100,10 @@ def LCCDE_IDS(file):
 
     metrics.update([('CatBoost',{
         "Accuracy": str(round(accuracy_score(y_test, y_pred)*100,2)),
-        "Precision": str(round(precision_score(y_test, y_pred, average='weighted')*100,2)),
-        "Recall":str(round(recall_score(y_test, y_pred, average='weighted')*100,2)),
-        "Average F1": str(round(f1_score(y_test, y_pred, average='weighted')*100,2)),
-        "F1 for each type of attack": str(f1_score(y_test, y_pred, average=None))
+        "Precision": str(precision_score(y_test, y_pred, average='weighted')*100),
+        "Recall":str(recall_score(y_test, y_pred, average='weighted')*100),
+        "F1_score": str(f1_score(y_test, y_pred, average='weighted')*100),
+        "F1_or_each_type_of_attack": str(f1_score(y_test, y_pred, average=None))
     })])
     cb_f1=f1_score(y_test, y_pred, average=None)
 
@@ -122,11 +121,11 @@ def LCCDE_IDS(file):
 
     # The performance of the proposed lCCDE model
     metrics.update([('LCCDE',{
-        "Accuracy": str(round(accuracy_score(yt, yp)*100,2)),
-        "Precision": str(round(precision_score(yt, yp, average='weighted')*100,2)),
-        "Recall":str(round(recall_score(yt, yp, average='weighted')*100,2)),
-        "Average F1": str(round(f1_score(yt, yp, average='weighted')*100,2)),
-        "F1 for each type of attack": str(f1_score(yt, yp, average=None))
+        "Accuracy": str(accuracy_score(yt, yp)*100),
+        "Precision": str(precision_score(yt, yp, average='weighted')*100),
+        "Recall":str(recall_score(yt, yp, average='weighted')*100),
+        "F1_score": str(f1_score(yt, yp, average='weighted')*100),
+        "F1_or_each_type_of_attack": str(f1_score(yt, yp, average=None))
     })])
 
     return metrics

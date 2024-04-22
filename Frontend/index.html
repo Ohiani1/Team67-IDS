@@ -40,7 +40,8 @@
             <form action="index.html" method="GET">
               <label for="dataset">Choose Dataset:</label><br />
               <select id="dataset" name="dataset">
-                <option value="CICIDS2017">CICIDS2017</option>
+                <option value="CICIDS2017_sample">CICIDS2017</option>
+                <option value="CICIDS2017_sample_km">CICIDS2017_km</option>
               </select>
             </form>
           </div>
@@ -58,9 +59,9 @@
                     </form>
                 </div> -->
                 <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value);">Run Test</button>
-                <button class="save_button" > Save Results</button>
+                <button class="save_button" onclick="uploadDataToServer()"> Save Results</button>
 
-                <button class="compare_button" > Compare</button>
+                <button class="compare_button" onclick="scrollToCompareResults()"> Compare</button>
 
         </div>
 
@@ -77,20 +78,20 @@
             <div id="response"></div>
             <div class="precision">
               <h1 class="precision_title">Precision</h1>
-              <p class="precision_api">dummy text</p>
+              <p id="precision_api"></p>
             </div>
             <div class="recall">
               <h1 class="recall_title">Recall</h1>
-              <p class="recall_api">13</p>
+              <p id="recall_api"></p>
             </div>
             
             <div class="accuracy">
               <h1 class="accuracy_title">Accuracy</h1>
-              <p class="accuracy_api"></p>
+              <p id="accuracy_api"></p>
             </div>
             <div class="f1">
               <h1 class="f1_title">F-1 Score</h1>
-              <p class="f1_api"></p>
+              <p id="f1_api"></p>
             </div>
            
           </div>
@@ -132,7 +133,7 @@
       </div>
     </section>
     <section id = "system2">
-        <div class="title_compare">Compare Results</div>
+        <div class="title_compare" id="compare-results">Compare Results</div>
         <div class="toolContainer">
         <div class="headerContainer">
                  <!-- <p id="title">

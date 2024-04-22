@@ -12,7 +12,8 @@ import xgboost as xgb
 from xgboost import plot_importance
 
 
-def tree_based_IDS():
+def tree_based_IDS(file):
+
     metrics = {}
     
     # # Tree-Based Intelligent Intrusion Detection System in Internet of Vehicles 
@@ -24,7 +25,7 @@ def tree_based_IDS():
     # L. Yang, A. Moubayed, I. Hamieh and A. Shami, "Tree-Based Intelligent Intrusion Detection System in Internet of Vehicles," 2019 IEEE Global Communications Conference (GLOBECOM), 2019, pp. 1-6, doi: 10.1109/GLOBECOM38437.2019.9013892.  
 
     ### Preprocessing (normalization and padding values)
-    df = pd.read_csv('CICIDS2017_sample.csv')
+    df = pd.read_csv(f'{file}.csv')
 
     # Min-max normalization
     numeric_features = df.dtypes[df.dtypes != 'object'].index
@@ -70,10 +71,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
 
     metrics.update([('Decision Tree', {
-        "Accuracy" : str(round(dt_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(dt_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -90,10 +91,10 @@ def tree_based_IDS():
     #print(classification_report(y_true,y_predict))
     
     metrics.update([('Random Forest', {
-        "Accuracy" : str(round(rf_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(rf_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     #cm=confusion_matrix(y_true,y_predict)
 
@@ -110,10 +111,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('Extra Trees', {
-        "Accuracy" : str(round(et_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(et_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -130,10 +131,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('XGBoost', {
-        "Accuracy" : str(round(xg_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(xg_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -171,10 +172,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('Stacking', {
-        "Accuracy" : str(round(stk_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(stk_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])    
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -236,10 +237,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('(FS) Decision Tree', {
-        "Accuracy" : str(round(dt_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(dt_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -254,10 +255,10 @@ def tree_based_IDS():
     precision,recall,fscore,none= precision_recall_fscore_support(y_true, y_predict, average='weighted')
     
     metrics.update([('(FS) Random Forest', {
-        "Accuracy" : str(round(rf_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(rf_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
 
     # cm=confusion_matrix(y_true,y_predict)
@@ -274,10 +275,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('(FS) Extra Trees', {
-        "Accuracy" : str(round(et_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(et_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -293,10 +294,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('(FS) XGBoost', {
-        "Accuracy" : str(round(xg_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(xg_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 
@@ -332,10 +333,10 @@ def tree_based_IDS():
     # print(classification_report(y_true,y_predict))
     
     metrics.update([('(FS) Stacking', {
-        "Accuracy" : str(round(stk_score*100, 2)),
-        "Precision" : str(round(precision*100, 2)),
-        "Recall" : str(round(recall*100, 2)),
-        "F1-score" : str(round(fscore*100, 2))
+        "Accuracy" : str(stk_score*100),
+        "Precision" : str(precision*100),
+        "Recall" : str(recall*100),
+        "F1_score" : str(fscore*100)
     })])
     # cm=confusion_matrix(y_true,y_predict)
 

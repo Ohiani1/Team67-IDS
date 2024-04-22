@@ -8,6 +8,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from models.LCCDE_IDS import LCCDE_IDS
 from models.Tree_based_IDS import tree_based_IDS
+from models.MTH_IDS import MHT_IDS
 
 
 app = Flask(__name__)
@@ -33,11 +34,13 @@ def save_run():
     json_data = request.json
     model = json_data['model']
     metrics = json_data['metrics']
+    dataset = json_data['dataset']
     timestamp = datetime.datetime.now()
 
     if model and metrics:
         id = collection.insert_one({
             'model':model,
+            'dataset':dataset,
             'metrics':metrics,
             'timestamp':timestamp
         })
@@ -62,14 +65,15 @@ def prevRuns():
 #########################################################################################################################################
 
 ## run a model with this api
-@app.route('/run/<modelId>', methods=['GET', 'POST'])
-def run(modelId):
+@app.route('/run/<modelId>/<dataset>', methods=['GET', 'POST'])
+@app.route('/run/<modelId>/<dataset>/<lr>/<ne>/<md>', methods=['GET', 'POST'])
+def run(modelId, dataset, lr=None, ne=None, md=None):
     if modelId == "Decision Tree":
-        result = tree_based_IDS()
+        result = tree_based_IDS(dataset)
     elif modelId == "LCCDE":
-        result = LCCDE_IDS()
+        result = LCCDE_IDS(dataset)
     elif modelId == "MHT":
-        result = {"result": "lol"}
+        result = MHT_IDS(file=dataset, lr=lr, ne=ne ,md=md)
     else:
         print(modelId + "we've reached end!")
         return not_found()
