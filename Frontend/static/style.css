@@ -16,6 +16,7 @@ body{
 width: 1100px;
   height: auto;
   background: rgb(51, 49, 49);
+  background: linear-gradient(to bottom, #54b4d1, #3ee28d);
   padding: 30px;
   border: 3px solid rgb(0, 0, 0);
   border-radius: 30px;
@@ -85,10 +86,11 @@ width: 1100px;
   padding: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+
 }
 
-.dropdown {
+.dropdown, .parameters {
   font-family: "Jost", sans-serif;
 
   text-align: center;
@@ -101,16 +103,40 @@ width: 1100px;
   border:2px solid rgb(0, 0, 0);
   border-radius: 20px;
   transition:300ms;
-  
+
 }
-.dropdown:hover {
+.dropdown:hover, .parameters:hover {
     border:2px solid rgb(98, 221, 127);
     transition:300ms;
     background-color: rgb(30, 30, 30);
     color:white;
-
 }
 
+.parameters{
+  margin-left:20px;
+  height:80px;
+  width:600px;
+  display: flex;
+  justify-content: space-between;
+
+}
+.parameters_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:3px;
+  flex-direction: column;
+}
+.parameters_title{
+  color:white;
+  font-size: 28px;
+  font-family: "Jost", sans-serif;
+  height:40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:8px;
+}
 .importButton {
   cursor: pointer;
   font-family: "Arial", "Times New Roman", monospace;
@@ -262,6 +288,7 @@ label {
   font-size: 20px;;
 }
 
+
 select {
   margin-top: 5px;
 }
@@ -274,6 +301,7 @@ select {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  align-items: center;
   height:auto;
 }
 
@@ -390,14 +418,19 @@ select {
   width: auto;
   height: auto;
   display: inline-block;
-  margin-right: 250px;
+
   margin-top:10px;
   color: rgb(255, 249, 249);
-  margin-left: 10px;
   font-size:22px;
+  text-align: center;
 }
 
-
+.bodyContainerHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:18px;
+}
 .scrollableTextbox2 {
   font-family: "Arial", "Times New Roman", monospace;
   height: 300px;

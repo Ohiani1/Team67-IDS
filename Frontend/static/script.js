@@ -17,6 +17,18 @@ function closeInfoPopup() {
     document.getElementById("myMoreInformation").style.display = "none";
 }
 
+document.getElementById('model').addEventListener('change', function() {
+  var selectedValue = this.value;
+  var parametersContainer = document.querySelector('.parameters_container');
+  
+  if (selectedValue === 'MHT') {
+    parametersContainer.style.display = 'flex';
+  } else {
+    parametersContainer.style.display = 'none';
+  }
+});
+
+
 function scrollToCompareResults() {
   const compareResultsDiv = document.getElementById('compare-results');
   compareResultsDiv.scrollIntoView({ behavior: 'smooth' });
@@ -28,7 +40,7 @@ let metricsData = null;
 let currentModel = null;
 let currentDataSet = null
 
-var homeUrl = "https://8549-129-110-241-33.ngrok-free.app"
+var homeUrl = "https://27a1-153-33-34-246.ngrok-free.app"
 
 
 
