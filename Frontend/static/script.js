@@ -40,7 +40,7 @@ let metricsData = null;
 let currentModel = null;
 let currentDataSet = null
 
-var homeUrl = "https://27a1-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://4d97-153-33-34-246.ngrok-free.app"
 
 
 
@@ -166,7 +166,7 @@ async function fetchRuns() {
       // Add each run as an option to the select element
       data.forEach(run => {
         const option = document.createElement('option');
-        option.value = run.model
+        option.value = run._id.$oid
         option.textContent = `${run.model} | ${run.dataset} | ${new Date(run.timestamp.$date).toLocaleString()}`
         selectElement.appendChild(option);
       });
@@ -186,7 +186,28 @@ if (called == 0 || updatedb == true)
 }
 
 
+document.getElementById('test').addEventListener('change', async (event) => {
+  const selectedOption = event.target.value;
+  //const responseElement = document.getElementById('response');
 
+  try {
+    // Fetch data based on the selected option
+    const response = await fetch(`${homeUrl}/find/${selectedOption}`);
+    const data = await response.json();
+    metrics = data.metrics
+
+    document.getElementById("prev_precision").textContent = metrics.Precision
+    document.getElementById("prev_recall").textContent = metrics.Recall
+    document.getElementById("prev_accuracy").textContent = metrics.Accuracy
+    document.getElementById("prev_f1").textContent = metrics.F1_score
+
+    // Update the response paragraph with the fetched data
+    //responseElement.textContent = JSON.stringify(data);
+  } catch (error) {
+    console.error('Error fetching run data:', error);
+    responseElement.textContent = 'Error fetching data';
+  }
+});
 
 
 

@@ -82,11 +82,13 @@ def run(modelId, dataset, lr=None, ne=None, md=None):
     return jsonify(result)
         
 #########################################################################################################################################
-@app.route('/find/<modelId>/<dataset>/<timestamp>', methods=['GET'])
-def findOne():
-    run = collection.find({
-        
-    })
+@app.route('/find/<runId>', methods=['GET'])
+def findOne(runId):
+    run = collection.find_one({"_id": ObjectId(runId)})
+    resp = dumps(run)
+    return resp
+
+#########################################################################################################################################
 
 
 @app.errorhandler(404)
