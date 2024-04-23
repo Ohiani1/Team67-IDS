@@ -3,6 +3,7 @@ from flask import request, jsonify, render_template
 import os
 import pprint
 import datetime
+import pytz
 from pymongo import MongoClient
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -35,7 +36,7 @@ def save_run():
     model = json_data['model']
     metrics = json_data['metrics']
     dataset = json_data['dataset']
-    timestamp = datetime.datetime.now()
+    timestamp = datetime.datetime.now(pytz.utc)
 
     if model and metrics:
         id = collection.insert_one({
@@ -81,7 +82,11 @@ def run(modelId, dataset, lr=None, ne=None, md=None):
     return jsonify(result)
         
 #########################################################################################################################################
-
+@app.route('/find/<modelId>/<dataset>/<timestamp>', methods=['GET'])
+def findOne():
+    run = collection.find({
+        
+    })
 
 
 @app.errorhandler(404)

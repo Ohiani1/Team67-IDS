@@ -28,7 +28,7 @@ let metricsData = null;
 let currentModel = null;
 let currentDataSet = null
 
-var homeUrl = "https://27a1-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://8549-129-110-241-33.ngrok-free.app"
 
 
 
@@ -64,7 +64,7 @@ async function callBackendAPI() {
         document.getElementById("f1_api").textContent = metrics.F1_score
 
         document.getElementById("compare_precision").textContent = metrics.Precision
-        document.getElementById("comapre_recall").textContent = metrics.Recall
+        document.getElementById("compare_recall").textContent = metrics.Recall
         document.getElementById("compare_accuracy").textContent = metrics.Accuracy
         document.getElementById("compare_f1").textContent = metrics.F1_score
         //run = data; // Do something with the response from the backend if needed
