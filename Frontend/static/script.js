@@ -17,14 +17,14 @@ function closeInfoPopup() {
     document.getElementById("myMoreInformation").style.display = "none";
 }
 
+
 document.getElementById('model').addEventListener('change', function() {
   var selectedValue = this.value;
-  var parametersContainer = document.querySelector('.parameters_container');
   
   if (selectedValue === 'MHT') {
-    parametersContainer.style.display = 'flex';
+    document.getElementById("parameters_input").style.display = 'flex';
   } else {
-    parametersContainer.style.display = 'none';
+    document.getElementById("parameters_input").style.display = 'none';
   }
 });
 
@@ -39,8 +39,9 @@ let updatedb = false;
 let metricsData = null;
 let currentModel = null;
 let currentDataSet = null
+let params = null;
 
-var homeUrl = "https://4d97-153-33-34-246.ngrok-free.app"
+var homeUrl = "https://01f9-153-33-34-246.ngrok-free.app"
 
 
 
@@ -56,9 +57,27 @@ async function callBackendAPI() {
   
       // Update the button text to the selected option
       document.querySelector('.runButton').textContent = selectedOption;
+
+      const learningRate = document.getElementById('learningRate').value;
+      const numEstimators = document.getElementById('num_estimators').value;
+      const maxDepth = document.getElementById('max_depth').value;
+
+      var url;
+
+      if (learningRate || numEstimators || maxDepth)
+      {
+
+        url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}/${encodeURIComponent(selectedDataset)}/${encodeURIComponent(learningRate ? learningRate : 0.19229249758051492)}/${encodeURIComponent(numEstimators ? numEstimators : 30)}/${encodeURIComponent(maxDepth ? maxDepth : 36)}`;
+        params = {
+          learningRate: learningRate ? learningRate : 0.19229249758051492,
+          numEstimators: numEstimators ? numEstimators : 30,
+          maxDepth: maxDepth ? maxDepth : 36
+        }
+      }
+      else{
+        url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}/${encodeURIComponent(selectedDataset)}`;
+      }
   
-      // Construct the URL with selected option as path parameter
-      const url = `${homeUrl}/run/${encodeURIComponent(selectedOption)}/${encodeURIComponent(selectedDataset)}`;
   
       // Send a GET request to the backend API
       const response = await fetch(url, { mode: 'no-cors' });
@@ -75,10 +94,27 @@ async function callBackendAPI() {
         document.getElementById("accuracy_api").textContent = metrics.Accuracy
         document.getElementById("f1_api").textContent = metrics.F1_score
 
+        if (params){
+          document.getElementById("params_main_div").style.display = 'block';
+          document.getElementById("params_main").textContent = JSON.stringify(params)
+        }
+        else{
+          document.getElementById("params_main_div").style.display = 'none';
+        }
+
+
         document.getElementById("compare_precision").textContent = metrics.Precision
         document.getElementById("compare_recall").textContent = metrics.Recall
         document.getElementById("compare_accuracy").textContent = metrics.Accuracy
         document.getElementById("compare_f1").textContent = metrics.F1_score
+
+        if (params){
+          document.getElementById("params_compare_div").style.display = 'block';
+          document.getElementById("params_compare").textContent = JSON.stringify(params)
+        }
+        else{
+          document.getElementById("params_compare_div").style.display = 'none';
+        }
         //run = data; // Do something with the response from the backend if needed
       } else {
         const text = await response.text();
@@ -111,10 +147,23 @@ async function uploadDataToServer() {
   {
     // Define the API endpoint URL
     const uploadApiUrl = `${homeUrl}/save`;
-    const paylod = {
-      model: currentModel,
-      dataset: currentDataSet,
-      metrics: metricsData
+
+    var payload
+
+    if (params) {
+      payload = {
+        model: currentModel,
+        dataset: currentDataSet,
+        metrics: metricsData,
+        params: params 
+      }
+    }
+    else{
+      payload = {
+        model: currentModel,
+        dataset: currentDataSet,
+        metrics: metricsData,
+      }
     }
 
     try {
@@ -124,7 +173,7 @@ async function uploadDataToServer() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(paylod)
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {
@@ -195,11 +244,20 @@ document.getElementById('test').addEventListener('change', async (event) => {
     const response = await fetch(`${homeUrl}/find/${selectedOption}`);
     const data = await response.json();
     metrics = data.metrics
+    parameters = data?.params
 
     document.getElementById("prev_precision").textContent = metrics.Precision
     document.getElementById("prev_recall").textContent = metrics.Recall
     document.getElementById("prev_accuracy").textContent = metrics.Accuracy
     document.getElementById("prev_f1").textContent = metrics.F1_score
+
+    if (parameters){
+      document.getElementById("params_id_div").style.display = 'block';
+      document.getElementById("params_id").textContent = JSON.stringify(parameters)
+    }
+    else{
+      document.getElementById("params_id_div").style.display = 'none';
+    }
 
     // Update the response paragraph with the fetched data
     //responseElement.textContent = JSON.stringify(data);

@@ -39,12 +39,17 @@ def save_run():
     timestamp = datetime.datetime.now(pytz.utc)
 
     if model and metrics:
-        id = collection.insert_one({
+        document = {
             'model':model,
             'dataset':dataset,
             'metrics':metrics,
             'timestamp':timestamp
-        })
+        }
+
+        if 'params' in json_data:
+            document['params'] = json_data['params']
+
+        id = collection.insert_one(document)
 
         resp = jsonify("run added successfully")
         resp.status_code = 200
@@ -66,7 +71,7 @@ def prevRuns():
 
 ## run a model with this api
 @app.route('/run/<modelId>/<dataset>', methods=['GET', 'POST'])
-@app.route('/run/<modelId>/<dataset>/<lr>/<ne>/<md>', methods=['GET', 'POST'])
+@app.route('/run/<modelId>/<dataset>/<float:lr>/<int:ne>/<int:md>', methods=['GET', 'POST'])
 def run(modelId, dataset, lr=None, ne=None, md=None):
     if modelId == "Decision Tree":
         result = tree_based_IDS(dataset)

@@ -60,10 +60,29 @@
                 </div> -->
                 <button class="runButton" onclick="callBackendAPI(document.getElementById('model').value);">Run Test</button>
                 <button class="save_button" onclick="uploadDataToServer()"> Save Results</button>
-
                 <button class="compare_button" onclick="scrollToCompareResults()"> Compare</button>
+              
 
         </div>
+        <div class="parameters_container" id="parameters_input">
+          <div class="parameters_title">
+            Parameters
+          </div>
+        <div class="parameters">
+          <form action="index.html" method="GET" >
+              <label for="learningRate">Learning Rate:</label><br>
+              <input type="number" id="learningRate" name="learningRate" step="any" min="0"><br><br>
+          </form>
+          <form action="index.html" method="GET" >
+            <label for="num_estimators">Number of Estimators:</label><br>
+            <input type="number" id="num_estimators" name="num_estimators" step="any" min="0"><br><br>
+        </form>
+        <form action="index.html" method="GET" >
+          <label for="max_depth">Max Depth:</label><br>
+          <input type="number" id="max_depth" name="max_depth" step="any" min="0"><br><br>
+        </form>
+      </div>
+    </div>
 
         <div class="bodyContainer">
           <div class="scrollableTextbox">
@@ -92,6 +111,13 @@
             <div class="f1">
               <h1 class="f1_title">F-1 Score</h1>
               <p id="f1_api"></p>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="params" id="params_main_div">
+              <h1 class="params_title">parameters</h1>
+              <p class="f1_api" id="params_main"></p>
             </div>
            
           </div>
@@ -168,7 +194,6 @@
 
             <div class="bodyContainerHeader">
                 <div class="bCHeader1">Console Output for Current Test:</div>
-              
             </div>
 
 
@@ -191,9 +216,21 @@
                     <h1 class="f1_title">F-1 Score</h1>
                     <p class="f1_api" id="compare_f1"></p>
                   </div>
+                  <br>
+                  <br>
+                  <br>
+                  <div class="params" id="params_compare_div">
+                    <h1 class="params_title">parameters</h1>
+                    <p class="f1_api" id="params_compare"></p>
                   </div>
+                </div>
+                  
+
+
      
-                <div class="bCHeader1">Console Output from Previous Test:</div>
+                  <div class="bodyContainerHeader">
+                    <div class="bCHeader1">Console Output from Previous Test:</div>
+                </div>
                 <div class="scrollableTextbox2">
                   <div class="precision">
                     <h1 class="precision_title">Precision</h1>
@@ -212,12 +249,19 @@
                     <h1 class="f1_title">F-1 Score</h1>
                     <p class="f1_api" id="prev_f1"></p>
                   </div>
-                    </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <div class="params" id="params_id_div">
+                    <h1 class="params_title">parameters</h1>
+                    <p class="f1_api" id="params_id"></p>
+                  </div>
                 </div>
 
 
                
-                <button class="moreInformation" onclick="infoPopup()">i</button>
+
                 <div class="form-moreInformation" id="myMoreInformation">
                     <form class="infoPopup-container">
                         <h1>More Information</h1>
