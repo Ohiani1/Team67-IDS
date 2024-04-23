@@ -120,13 +120,13 @@ async function callBackendAPI() {
         const text = await response.text();
         loadingCircle.classList.add('hidden');
         console.error(`Network response was not ok (${response.status}): ${text}`);
-        document.querySelector('.runButton').textContent = "fail";
+        document.querySelector('.runButton').textContent = "try again";
         throw new Error(`Network response was not ok (${response.status}): ${text}`);
       }
     } catch (error) {
         loadingCircle.classList.add('hidden');
       console.error('There was a problem with your fetch operation:', error);
-      document.querySelector('.runButton').textContent = "fail";
+      document.querySelector('.runButton').textContent = "try again";
     }
   }
 
