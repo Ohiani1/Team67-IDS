@@ -28,9 +28,6 @@ from xgboost import plot_importance
 
 def MHT_IDS(file, lr=None, ne=None, md=None):
     metrics = {}
-    print(f"lr: {lr}, type: {type(lr)}")
-    print(f"ne: {ne}, type: {type(ne)}")
-    print(f"md: {md}, type: {type(md)}")
     df = pd.read_csv('CICIDS2017_sample.csv')
     # The results in this code is based on the original CICIDS2017 dataset.
 
